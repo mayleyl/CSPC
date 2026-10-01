@@ -39,3 +39,14 @@ where λ = 0.3 and N0 is the first observed value.
 The observed data and the analytical curve show the decay behavior of the system.
 
 Snakemake was used to automate the workflow. It takes `decay_observed.csv` as input and runs `plot.py` to produce `figure.png`. If the output file is already up to date, Snakemake does not run the rule again.
+
+
+## PW2 — Lab A
+
+- **Mean acceleration:** -8.58 m/s² (expected about -9.81 for free fall); std = 28.7 m/s².
+- **Why the acceleration is noisy:** differentiation compares neighbouring
+  measurements, so it amplifies noise; the acceleration comes from two
+  derivatives, so its noise is much larger than the noise in the position.
+- **Integrating back:** the position recovered by integrating the noisy
+  acceleration differs from the original by at most 0.78 m, because
+  integration is a sum and random noise partly cancels out.
