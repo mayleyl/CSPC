@@ -31,13 +31,9 @@ conda activate cspc
 ## PW1 — Lab B
 
 The observed decay data were compared with the analytical decay law:
-
 N(t) = N0 * exp(-λt)
-
 where λ = 0.3 and N0 is the first observed value.
-
 The observed data and the analytical curve show the decay behavior of the system.
-
 Snakemake was used to automate the workflow. It takes `decay_observed.csv` as input and runs `plot.py` to produce `figure.png`. If the output file is already up to date, Snakemake does not run the rule again.
 
 
@@ -50,3 +46,6 @@ Snakemake was used to automate the workflow. It takes `decay_observed.csv` as in
 - **Integrating back:** the position recovered by integrating the noisy
   acceleration differs from the original by at most 0.78 m, because
   integration is a sum and random noise partly cancels out.
+
+  - **Bonus (2D trajectory):** computed speed from np.gradient of x and y
+  separately; see trajectory.png.
