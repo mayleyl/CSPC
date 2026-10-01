@@ -26,3 +26,16 @@ conda activate cspc
 
 **Conclusion:**
 - I learned how to use Git and GitHub, create a reproducible conda environment, and write tests for a simulation. The NumPy version was much faster than the pure-Python loop. I also learned that tests can help find problems in the code and confirm that the simulation works as expected.
+
+
+## PW1 — Lab B
+
+The observed decay data were compared with the analytical decay law:
+
+N(t) = N0 * exp(-λt)
+
+where λ = 0.3 and N0 is the first observed value.
+
+The observed data and the analytical curve show the decay behavior of the system.
+
+Snakemake was used to automate the workflow. It takes `decay_observed.csv` as input and runs `plot.py` to produce `figure.png`. If the output file is already up to date, Snakemake does not run the rule again.
