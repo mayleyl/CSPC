@@ -73,11 +73,12 @@ Snakemake was used to automate the workflow. It takes `decay_observed.csv` as in
 
   ## PW3 — Data, Distributions, Testing, and Causation
 
-**Data.** Heart disease (Cleveland): Janosi, A., Steinbrunn, W., Pfisterer, M., &
-Detrano, R. (1989). Heart Disease [Dataset]. UCI Machine Learning Repository.
-https://doi.org/10.24432/C52P4X. I built heart.csv from processed.cleveland.data
-(added column names, dropped 6 rows with missing values, target = 1 if the
-original label > 0), giving 297 patients. The chemical-exposure data is
+**Data.** Heart Disease Cleveland, Kaggle dataset by ritwikb3
+(https://www.kaggle.com/datasets/ritwikb3/heart-disease-cleveland), based on the
+UCI Heart Disease dataset: Janosi, A., Steinbrunn, W., Pfisterer, M., &
+Detrano, R. (1989). UCI Machine Learning Repository.
+https://doi.org/10.24432/C52P4X. 303 patients, no missing values,
+target = 1 means heart disease. The chemical-exposure data is
 chemicals_cancer.csv (1000 synthetic patients).
 
 ### Session 1 — distributions and normality
@@ -85,25 +86,25 @@ chemicals_cancer.csv (1000 synthetic patients).
   right-skewed with a long tail of high values, trestbps is mildly right-skewed,
   thalach is mildly left-skewed.
 - **Normality** (qqplots.png, Shapiro-Wilk, skewness):
-  - age: Shapiro p = 0.005, skew = -0.22 -> approximately normal (small skew,
-    Q-Q points close to the line), the Shapiro test is very sensitive at n = 297.
-  - chol: p = 1e-8, skew = 1.11 -> not normal (strong right skew).
+  - age: Shapiro p = 0.006, skew = -0.21 -> approximately normal (small skew,
+    Q-Q points close to the line); the Shapiro test is very sensitive at n = 303.
+  - chol: p = 6e-9, skew = 1.13 -> not normal (strong right skew).
   - trestbps: p = 2e-6, skew = 0.70 -> not normal.
-  - thalach: p = 9e-5, skew = -0.53 -> not normal overall, mildly left-skewed.
+  - thalach: p = 7e-5, skew = -0.53 -> not normal overall, mildly left-skewed.
 
 ### Session 2
 - **Heart rate by group.** thalach is not normal overall, and in the healthy
-  group Shapiro p = 0.001, so I used the non-parametric Mann-Whitney U test
-  (U = 5521, p = 1.7e-13); Welch's t-test gives the same conclusion
-  (t = -7.93, p = 6e-14). Patients with heart disease reach a lower maximum
+  group Shapiro p = 0.0005, so I used the non-parametric Mann-Whitney U test
+  (U = 5806.5, p = 1.9e-13); Welch's t-test gives the same conclusion
+  (t = -7.86, p = 9e-14). Patients with heart disease reach a lower maximum
   heart rate: the groups genuinely differ.
-- **Uncertainty.** Disease: mean 139.1 bpm, SEM 1.94 (n = 137). Healthy: mean
-  158.6 bpm, SEM 1.51 (n = 160). In thalach_means.png the error bars are far
+- **Uncertainty.** Disease: mean 139.3 bpm, SEM 1.92 (n = 139). Healthy: mean
+  158.4 bpm, SEM 1.50 (n = 164). In thalach_means.png the error bars are far
   apart and do not overlap, which agrees with the test.
 - **Age vs thalach.** Pearson r = -0.39, Spearman rho = -0.39 (p ~ 1e-12): a
   moderate negative relationship, max heart rate decreases with age
   (age_thalach.png).
-- **Bonus.** target proportions are 54% / 46%; entropy = 0.996 bits (maximum
+- **Bonus.** target proportions are 54% / 46%; entropy = 0.995 bits (maximum
   is 1), so the column is almost perfectly balanced and about as hard to guess
   as a fair coin.
 
